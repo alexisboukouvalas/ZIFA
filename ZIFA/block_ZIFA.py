@@ -355,6 +355,7 @@ def generateIndices(n_blocks, N, D):
 	Output: 
 	y_indices_to_use[i][j] is the indices of block j in sample i. 
 	"""
+	n_blocks = int(n_blocks)
 	y_indices_to_use = []
 	idxs = range(D)
 	n_in_block = int(1.*D / n_blocks)
@@ -432,7 +433,7 @@ def runEMAlgorithm(Y, K, singleSigma = False, n_blocks = None):
 	if n_blocks is None:
 		n_blocks = max(1, D / 500)
 		print('Number of blocks has been set to', n_blocks)
-	
+	n_blocks = int(n_blocks)  # python3 compatibility
 	print('Running block zero-inflated factor analysis with N = %i, D = %i, K = %i, n_blocks = %i' % (N, D, K, n_blocks))
 	#generate blocks. 
 	y_indices_to_use = generateIndices(n_blocks, N, D) 
